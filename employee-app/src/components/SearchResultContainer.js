@@ -22,17 +22,27 @@ class SearchResultContainer extends Component {
       .then(res => {
         this.setState({ employees: res.data.results })
         this.setState({ results: res.data.results })
-        console.log(res)
       })
       .catch(err => console.log(err));
   };
 
   handleInputChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
     this.setState({
-      [name]: value
+      search: event.target.value
     });
+
+    if (event.target.value === "" || event.target.value === undefined){
+      this.setState({ results: this.state.employees });
+    } else if (event.target.value.indexOf(" ") < 0){
+      this.setState({ results: this.state.employees.filter(employee => {
+        return ((employee.name.first.toLowerCase().startsWith(event.target.value.toLowerCase())) || (employee.name.last.toLowerCase().startsWith(event.target.value.toLowerCase())))
+      })
+    });
+    } else {
+      this.setState({ results: this.state.employees.filter(employee => {
+        return ((employee.name.first + " " + employee.name.last).toLowerCase().startsWith(event.target.value.toLowerCase()));
+      })})
+    }
   };
 
   handleButtonPush = event => {
@@ -107,23 +117,6 @@ class SearchResultContainer extends Component {
     });
   }
 
-  // When the form is submitted, search the Giphy API for `this.state.search`
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.search === "" || this.state.search === undefined){
-      this.setState({ results: this.state.employees });
-    } else if (this.state.search.indexOf(" ") < 0){
-      this.setState({ results: this.state.employees.filter(employee => {
-        return ((employee.name.first.toLowerCase().startsWith(this.state.search.toLowerCase())) || (employee.name.last.toLowerCase().startsWith(this.state.search.toLowerCase())))
-      })
-    });
-    } else {
-      this.setState({ results: this.state.employees.filter(employee => {
-        return ((employee.name.first + " " + employee.name.last).toLowerCase().startsWith(this.state.search.toLowerCase()));
-      })})
-    }
-  };
-
   render() {
     return (
       <div>
@@ -135,6 +128,7 @@ class SearchResultContainer extends Component {
           search={this.state.search}
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
+          autocompleteList={this.state.results.map(elem => elem.name.first + elem.name.last)}
         />
         <ResultList results={this.state.results} handleButtonPush={this.handleButtonPush}/>
       </div>
