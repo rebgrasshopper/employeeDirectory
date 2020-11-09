@@ -1,0 +1,76 @@
+.jumbotron {
+    background-color: rgb(98, 98, 197) !important;
+    color: white !important;
+}
+
+button {
+    background-color: rgb(98, 98, 197) !important;
+    border: solid rgb(167, 167, 240) 1px;
+    border-radius: 10px !important;
+    padding: 6px;
+    color: white;
+}
+
+tr:first-of-type{
+    background-color: rgb(98, 98, 197);
+    font-size: 22px;
+    color: white;
+}
+
+tr:nth-child(even){
+    background-color: rgb(209, 209, 209);
+}
+
+form {
+    margin-top: 20px;
+}
+
+#search {
+    width: 50%;
+    min-width: 300px;
+    max-width: 600px;
+    margin: 8px;
+}
+
+.btn {
+    margin: 8px;
+}
+
+label {
+    margin: 8px;
+}
+
+img {
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width: 700px){
+    #search {
+        min-width: 150px;
+        width: 100%;
+    }
+
+    button {
+        font-size: 12px !important;
+    }
+
+    .btn {
+        font-size: 12px !important;
+    }
+
+    tr {
+        display: flex;
+        flex-direction: column;
+    }
+
+    tr:first-of-type {
+        display: flex;
+        flex-direction: row;
+    }
+
+    table {
+        display: flex;
+        overflow-x: scroll;
+    }
+}
