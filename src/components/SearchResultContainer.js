@@ -45,6 +45,11 @@ class SearchResultContainer extends Component {
     }
   };
 
+  handFormSubmit = event => {
+    console.log(event.which);
+    event.preventDefault();
+  }
+
   handleButtonPush = event => {
     let type = event.target.name;
     this.setState({
@@ -128,7 +133,6 @@ class SearchResultContainer extends Component {
           search={this.state.search}
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
-          autocompleteList={this.state.results.map(elem => elem.name.first + elem.name.last)}
         />
         <ResultList results={this.state.results} handleButtonPush={this.handleButtonPush}/>
       </div>

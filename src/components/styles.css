@@ -21,7 +21,7 @@ button {
 
 /* table */
 
-tr:first-of-type{
+.title {
     background-color: rgb(98, 98, 197);
     font-size: 22px;
     color: white;
