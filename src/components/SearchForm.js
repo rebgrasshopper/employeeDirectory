@@ -3,7 +3,11 @@ import './styles.css'
 
 function SearchForm(props) {
   return (
-    <form className="mx-5" autoComplete="off">
+    <form 
+    className="mx-5" 
+    autoComplete="off"
+    onSubmit={props.handleFormSubmit}
+    >
       <div className="form-group d-flex align-items-center justify-content-start">
         <label htmlFor="search">Search:</label>
         <input
@@ -13,7 +17,6 @@ function SearchForm(props) {
           className="form-control"
           placeholder="Employee name"
           id="search"
-          onKeyPress={props.handleFormSubmit}
           onChange={props.handleInputChange}
         />
       </div>

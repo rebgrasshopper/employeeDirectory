@@ -45,8 +45,7 @@ class SearchResultContainer extends Component {
     }
   };
 
-  handFormSubmit = event => {
-    console.log(event.which);
+  handleFormSubmit = event => {
     event.preventDefault();
   }
 
